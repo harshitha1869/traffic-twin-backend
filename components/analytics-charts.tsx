@@ -70,12 +70,12 @@ useEffect(() => {
 
 const loadAnalytics = async () => {
   try {
-    const causesRes = await fetch("http://127.0.0.1:8000/analytics/causes")
-    const typesRes = await fetch("http://127.0.0.1:8000/analytics/types")
-    const hoursRes = await fetch("http://127.0.0.1:8000/analytics/hours")
-    const monthlyRes = await fetch("http://127.0.0.1:8000/analytics/monthly")
+    const causesRes = await fetch("https://traffictwin-api.onrender.com/analytics/causes")
+    const typesRes = await fetch("https://traffictwin-api.onrender.com/analytics/types")
+    const hoursRes = await fetch("https://traffictwin-api.onrender.com/analytics/hours")
+    const monthlyRes = await fetch("https://traffictwin-api.onrender.com/analytics/monthly")
     const comparisonRes = await fetch(
-  "http://127.0.0.1:8000/analytics/comparison"
+  "https://traffictwin-api.onrender.com/analytics/comparison"
 )
 
 setComparison(await comparisonRes.json())

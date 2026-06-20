@@ -1,3 +1,4 @@
+"use client";
 import { Activity, AlertTriangle, Ban, Timer, Flame, Download } from "lucide-react"
 import { PageHeader } from "@/components/app-shell"
 import { StatCard } from "@/components/stat-card"
@@ -12,6 +13,8 @@ import {
 import { IncidentsTable } from "@/components/incidents-table"
 import ExportPdfButton from "@/components/export-pdf-button";
 import { AiInsightsPanel } from "@/components/ai-insights-panel"
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 
 
@@ -24,7 +27,15 @@ const cards = [
 ]
 
 export default function DashboardPage() {
- 
+  const router = useRouter();
+
+  useEffect(() => {
+    const loggedIn = localStorage.getItem("loggedIn");
+
+    if (loggedIn !== "true") {
+      router.push("/login");
+    }
+  }, []);
   return (
     <div className="flex flex-col gap-6">
       <PageHeader

@@ -19,7 +19,7 @@ const [active, setActive] = useState(1)
 const fetchHotspots = async () => {
   try {
     const response = await fetch(
-      "http://127.0.0.1:8000/hotspots"
+      "https://traffictwin-api.onrender.com/hotspots"
     )
 
     const data = await response.json()

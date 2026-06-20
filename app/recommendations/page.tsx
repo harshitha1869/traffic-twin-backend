@@ -35,7 +35,7 @@ export default function RecommendationsPage() {
   const [recommendations, setRecommendations] = useState<string[]>([])
 const [confidence, setConfidence] = useState(0)
 useEffect(() => {
-  fetch("http://127.0.0.1:8000/recommendations")
+ fetch("https://traffictwin-api.onrender.com/recommendations")
     .then((res) => res.json())
     .then((data) => {
       setConfidence(data.confidence)

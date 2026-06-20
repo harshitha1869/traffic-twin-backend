@@ -42,7 +42,7 @@ interface Hotspot {
     const [reportSummary, setReportSummary] = useState<any[]>([])
 const [hotspots, setHotspots] = useState<any[]>([])
   const loadReportData = async () => {
-  const status = await fetch("http://127.0.0.1:8000/status")
+  const status = await fetch("https://YOUR-RENDER-URL.onrender.com/status")
   const data = await status.json()
 
   setReportSummary([
@@ -63,7 +63,7 @@ const [hotspots, setHotspots] = useState<any[]>([])
 
 const loadHotspots = async () => {
   const res = await fetch(
-    "http://127.0.0.1:8000/hotspots"
+    "https://traffictwin-api.onrender.com/hotspots"
   )
 
   const data = await res.json()
