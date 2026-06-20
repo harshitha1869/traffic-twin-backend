@@ -1,5 +1,10 @@
+import { Suspense } from "react"
 import { ResourceClient } from "@/components/resource-client"
 
 export default function ResourcesPage() {
-  return <ResourceClient />
+  return (
+    <Suspense fallback={<div>Loading Resources...</div>}>
+      <ResourceClient />
+    </Suspense>
+  )
 }
