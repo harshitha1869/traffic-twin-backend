@@ -29,14 +29,23 @@ const cards = [
 export default function DashboardPage() {
   const router = useRouter();
 
-  useEffect(() => {
-    const loggedIn = localStorage.getItem("loggedIn");
+  const loggedIn =
+    typeof window !== "undefined"
+      ? localStorage.getItem("loggedIn")
+      : null;
 
+  useEffect(() => {
     if (loggedIn !== "true") {
-      router.push("/login");
+      router.replace("/login");
     }
-  }, []);
+  }, [loggedIn, router]);
+
+  if (loggedIn !== "true") {
+    return null;
+  }
+
   return (
+    // Your dashboard JSX
     <div className="flex flex-col gap-6">
       <PageHeader
   title="Operations Overview"
