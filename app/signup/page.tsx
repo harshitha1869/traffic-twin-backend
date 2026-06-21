@@ -14,18 +14,23 @@ export default function SignupPage() {
   const [password, setPassword] = useState("")
 
   const signup = () => {
-    localStorage.setItem(
-      "trafficUser",
-      JSON.stringify({
-        name,
-        email,
-        password,
-      })
-    )
-
-    alert("Officer Account Created")
-    router.push("/login")
+  if (!name.trim() || !email.trim() || !password.trim()) {
+    alert("Please fill all fields")
+    return
   }
+
+  localStorage.setItem(
+    "trafficUser",
+    JSON.stringify({
+      name: name.trim(),
+      email: email.trim(),
+      password,
+    })
+  )
+
+  alert("Officer Account Created Successfully")
+  router.push("/login")
+}
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-background">

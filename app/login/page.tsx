@@ -13,16 +13,32 @@ export default function LoginPage() {
   const [password, setPassword] = useState("");
 
   const login = () => {
-    const user = JSON.parse(localStorage.getItem("trafficUser") || "{}");
+  if (!email.trim() || !password.trim()) {
+    alert("Please enter email and password")
+    return
+  }
 
-    if (email === user.email && password === user.password) {
-      localStorage.setItem("loggedIn", "true")
-localStorage.setItem("officerName", user.name)
-router.push("/dashboard")
-    } else {
-      alert("Invalid Credentials");
-    }
-  };
+  const user = JSON.parse(
+    localStorage.getItem("trafficUser") || "{}"
+  )
+
+  if (!user.email) {
+    alert("No officer account found. Please sign up first.")
+    return
+  }
+
+  if (
+    email.trim() === user.email &&
+    password === user.password
+  ) {
+    localStorage.setItem("loggedIn", "true")
+    localStorage.setItem("officerName", user.name)
+
+    router.push("/dashboard")
+  } else {
+    alert("Invalid Credentials")
+  }
+}
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-background">
