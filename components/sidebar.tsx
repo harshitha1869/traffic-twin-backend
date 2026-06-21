@@ -18,7 +18,7 @@ import {
 import { cn } from "@/lib/utils"
 
 const nav = [
-  { label: "Dashboard", href: "/", icon: LayoutDashboard },
+  { label: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
   { label: "Congestion Prediction", href: "/prediction", icon: TrendingUp },
   { label: "Traffic Hotspots", href: "/hotspots", icon: Flame },
   { label: "Analytics", href: "/analytics", icon: BarChart3 },
@@ -57,8 +57,7 @@ export function Sidebar() {
 
       <nav className="flex flex-1 flex-col gap-1 overflow-y-auto p-3">
         {nav.map((item) => {
-          const active =
-            item.href === "/" ? pathname === "/" : pathname.startsWith(item.href)
+          const active = pathname.startsWith(item.href)
           const Icon = item.icon
           return (
             <Link
