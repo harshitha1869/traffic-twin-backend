@@ -18,7 +18,7 @@ export default function LoginPage() {
     if (email === user.email && password === user.password) {
       localStorage.setItem("loggedIn", "true")
 localStorage.setItem("officerName", user.name)
-router.push("/")
+router.push("/dashboard")
     } else {
       alert("Invalid Credentials");
     }
