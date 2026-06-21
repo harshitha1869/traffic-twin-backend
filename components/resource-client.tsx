@@ -81,13 +81,28 @@ const loadResources = async () => {
 
     const data = await response.json()
 
-    setResourceData(data)
+if (data.error) {
+  console.error(data.error)
 
-    console.log(data)
-  } catch (err) {
-    console.log(err)
-  }
+  setResourceData({
+    risk: 0,
+    officers: 0,
+    barricades: 0,
+    tow_trucks: 0,
+    drones: 0,
+    resolution_time: 0,
+  })
+
+  return
 }
+
+setResourceData(data)
+
+} catch (err) {
+  console.log(err)
+}
+}
+
 
 const recommendations = [
   {
@@ -109,22 +124,22 @@ const chartData = [
   {
     resource: "Officers",
     deployed: resourceData.officers,
-    available: 10 - resourceData.officers,
+    available: 10 - (resourceData.officers||0),
   },
   {
     resource: "Barricades",
     deployed: resourceData.barricades,
-    available: 10 - resourceData.barricades,
+    available: 10 - (resourceData.barricades||0),
   },
   {
     resource: "Tow Trucks",
     deployed: resourceData.tow_trucks,
-    available: 5 - resourceData.tow_trucks,
+    available: 5 - (resourceData.tow_trucks||0),
   },
   {
     resource: "Drones",
     deployed: resourceData.drones,
-    available: 3 - resourceData.drones,
+    available: 3 - (resourceData.drones||0),
   },
   {
   resource: "Patrol Cars",
