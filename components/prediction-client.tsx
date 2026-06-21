@@ -93,7 +93,9 @@ const [policeStation, setPoliceStation] = useState("")
           },
         body: JSON.stringify({
   event_type: type.toLowerCase(),
-  event_cause: cause.toLowerCase(),
+  event_cause: cause
+  .toLowerCase()
+  .replace(/\s+/g, "_"),
 
   zone,
   corridor,

@@ -645,3 +645,7 @@ def recommendations():
             "High congestion expected during peak hours"
         ]
     }
+    
+@app.get("/causes")
+def causes_list():
+    return encoders["event_cause"].classes_.tolist()
