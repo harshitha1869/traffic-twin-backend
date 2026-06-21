@@ -13,8 +13,9 @@ import {
 import { IncidentsTable } from "@/components/incidents-table"
 import ExportPdfButton from "@/components/export-pdf-button";
 import { AiInsightsPanel } from "@/components/ai-insights-panel"
-import { useEffect } from "react";
+
 import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 
 
 
@@ -28,19 +29,26 @@ const cards = [
 
 export default function DashboardPage() {
   const router = useRouter();
-
-  const loggedIn =
-    typeof window !== "undefined"
-      ? localStorage.getItem("loggedIn")
-      : null;
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [checking, setChecking] = useState(true);
 
   useEffect(() => {
-    if (loggedIn !== "true") {
+    const loggedIn = localStorage.getItem("loggedIn");
+
+    if (loggedIn === "true") {
+      setIsAuthenticated(true);
+    } else {
       router.replace("/login");
     }
-  }, [loggedIn, router]);
 
-  if (loggedIn !== "true") {
+    setChecking(false);
+  }, [router]);
+
+  if (checking) {
+    return null;
+  }
+
+  if (!isAuthenticated) {
     return null;
   }
 
