@@ -379,10 +379,12 @@ setResult({
         November: 11,
         December: 12,
       }
-
+      const eventCauseValue = cause
+  .toLowerCase()
+  .replace(/\s+/g, "_")
       router.push(
   `/resources?event_type=${type.toLowerCase()}
-  &event_cause=${cause.toLowerCase()}
+  &event_cause=${cause.toLowerCase().replace(/\s+/g, "_")}
   &zone=Central Zone 1
   &corridor=Non-corridor
   &police_station=Shivajinagar PS
